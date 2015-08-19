@@ -3,6 +3,7 @@
 <p>
   <strong>Name:</strong>
   <%= @bookmark_manager.name %>
+   <p>Tags: <%= @bookmark_manager.tag_list %></p>
 </p>
 
 <%= link_to 'Edit', edit_bookmark_manager_path(@bookmark_manager) %> |

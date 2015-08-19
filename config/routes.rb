@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  get 'tags/:tag', to: 'bookmark_managers#index', as: :tag
   resources :bookmark_managers
   root to: "bookmark_managers#index"
   # The priority is based upon order of creation: first created -> highest priority.

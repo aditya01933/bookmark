@@ -1,27 +1,17 @@
-<p id="notice"><%= notice %></p>
+<%= form_tag bookmark_managers_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search Tag", :name => nil %>
+  </p>
+<% end %>
 
-<h1>Listing Bookmark Managers</h1>
+<div id="bookmarks">
+ <% @bookmark_managers.each do |bookmark_manager| %>
+    <h2><%= link_to bookmark_manager.name, bookmark_manager %></h2>
+   
+   <p>Tags: <%= raw bookmark_manager.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @bookmark_managers.each do |bookmark_manager| %>
-      <tr>
-        <td><%= bookmark_manager.name %></td>
-        <td><%= link_to 'Show', bookmark_manager %></td>
-        <td><%= link_to 'Edit', edit_bookmark_manager_path(bookmark_manager) %></td>
-        <td><%= link_to 'Destroy', bookmark_manager, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
+    <p><%= link_to "Edit Bookmark", edit_bookmark_manager_path(bookmark_manager) %></p>
+  <% end %>
+</div>
 <%= link_to 'New Bookmark manager', new_bookmark_manager_path %>
